@@ -131,7 +131,6 @@ GameObject:
   m_Component:
   - component: {fileID: 35442116}
   - component: {fileID: 35442117}
-  - component: {fileID: 35442118}
   m_Layer: 0
   m_Name: attackHand
   m_TagString: Projectile
@@ -179,18 +178,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.69574904, y: 0.1399064}
   m_EdgeRadius: 0
---- !u!114 &35442118
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 35442115}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b31e215e1b793c4b84fc01371670d25, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &869621128
 GameObject:
   m_ObjectHideFlags: 0
@@ -310,7 +297,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1646603677}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.31, y: -1.11, z: 0}
+  m_LocalPosition: {x: 4.07, y: -1.11, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -448,7 +435,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1819763473}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.508, y: -0.661, z: -3.1210938}
+  m_LocalPosition: {x: 0, y: -1.91, z: 0}
   m_LocalScale: {x: 0.39562568, y: 0.41626918, z: 1}
   m_Children:
   - {fileID: 869621129}
@@ -548,6 +535,7 @@ GameObject:
   - component: {fileID: 1834889901}
   - component: {fileID: 1834889900}
   - component: {fileID: 1834889899}
+  - component: {fileID: 1834889902}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -614,12 +602,25 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1834889898}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 0, y: 0.25, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1834889902
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1834889898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0213876433a58374b99e0443ba073a6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1819763473}
 --- !u!1 &1895993255
 GameObject:
   m_ObjectHideFlags: 0
