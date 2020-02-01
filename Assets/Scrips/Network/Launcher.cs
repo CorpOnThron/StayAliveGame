@@ -36,11 +36,13 @@ public class Launcher : MonoBehaviourPunCallbacks
         if (PhotonNetwork.IsConnected)
         {
             PhotonNetwork.JoinRandomRoom();
+            Debug.Log("Connected Network");
         }
         else
         {
             PhotonNetwork.ConnectUsingSettings();
             PhotonNetwork.GameVersion = gameVersion;
+            Debug.Log("Using Settings Network");
         }
     }
 
@@ -72,5 +74,23 @@ public class Launcher : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         Debug.Log("Joined a room");
+    }
+
+    public override void OnPlayerEnteredRoom(Player newPlayer)
+    {
+        Debug.Log(newPlayer.NickName + " joined the room!");
+        controlPanel.SetActive(false);
+    }
+
+    public override void OnPlayerLeftRoom(Player otherPlayer)
+    {
+        Debug.Log(otherPlayer.NickName + " Left the room!");
+        PhotonNetwork.Disconnect();
+        controlPanel.SetActive(true);
+    }
+
+    public void SendMessage()
+    {
+        
     }
 }
