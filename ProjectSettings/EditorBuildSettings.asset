@@ -8,4 +8,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/OfflineScene.unity
+    guid: 16f45491093f0684e9383e8f25088d3e
   m_configObjects: {}
