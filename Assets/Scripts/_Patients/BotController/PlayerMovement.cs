@@ -12,6 +12,9 @@ public class PlayerMovement : MonoBehaviour
     float horizontalMove = 0f;
     bool jump = false;
     bool crouch = false;
+    bool attack = false;
+
+    public BoxCollider2D attackHand = null;
 
     // Update is called once per frame
     void Update()
@@ -23,6 +26,16 @@ public class PlayerMovement : MonoBehaviour
         {
             jump = true;
         }
+
+        if (Input.GetKeyDown(KeyCode.F) && attackHand != null) {
+            Debug.Log("Attacking!");
+            attackHand.transform.position = new Vector2(attackHand.transform.position.x + 2, attackHand.transform.position.y);
+        } else if (Input.GetKeyUp(KeyCode.F) && attackHand != null) {
+            Debug.Log("Stop Attacking!");
+            attackHand.transform.position = new Vector2(attackHand.transform.position.x - 2, attackHand.transform.position.y);
+        }
+           
+
 
         //if (Input.GetButtonDown("Crouch"))
         //{

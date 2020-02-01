@@ -133,6 +133,8 @@ public class BotController : MonoBehaviour
 			m_Grounded = false;
 			m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
 		}
+
+
 	}
 
 
