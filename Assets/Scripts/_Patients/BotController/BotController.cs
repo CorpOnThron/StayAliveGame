@@ -21,6 +21,11 @@ public class BotController : MonoBehaviour
 	private bool m_FacingRight = true;  // For determining which way the player is currently facing.
 	private Vector3 m_Velocity = Vector3.zero;
 
+
+
+	public BoxCollider2D attackHand;
+	public Animator animator;
+
 	[Header("Events")]
 	[Space]
 
@@ -31,6 +36,7 @@ public class BotController : MonoBehaviour
 
 	public BoolEvent OnCrouchEvent;
 	private bool m_wasCrouching = false;
+	private bool m_faicing_Attack;
 
 	private void Awake()
 	{
@@ -129,11 +135,13 @@ public class BotController : MonoBehaviour
 		// If the player should jump...
 		if (m_Grounded && jump)
 		{
+
 			// Add a vertical force to the player.
 			m_Grounded = false;
 			m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
 		}
 
+		animator.SetBool("isJumping", !m_Grounded);
 
 	}
 
@@ -165,5 +173,18 @@ public class BotController : MonoBehaviour
 
 
 
+	}
+
+	public void Attack(bool Contd) {
+		if (Contd)
+		{
+			attackHand.transform.position = new Vector2(attackHand.transform.position.x + (m_FacingRight ? 2 : -2), attackHand.transform.position.y);
+			
+		}
+		else 
+		{
+			attackHand.transform.position = new Vector2(attackHand.transform.position.x - (m_FacingRight ? 2 : -2), attackHand.transform.position.y);
+		}
+	
 	}
 }

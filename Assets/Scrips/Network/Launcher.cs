@@ -18,6 +18,7 @@ public class Launcher : MonoBehaviourPunCallbacks
     [SerializeField]
     public GameObject sendPanel;
 
+    public PlayerMovement player;
     private void Start()
     {
         progressLabel.SetActive(false);
@@ -85,6 +86,7 @@ public class Launcher : MonoBehaviourPunCallbacks
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
         Debug.Log(newPlayer.NickName + " joined the room!");
+        player.isConnected = true;
         controlPanel.SetActive(false);
         sendPanel.SetActive(true);
         progressLabel.SetActive(false);

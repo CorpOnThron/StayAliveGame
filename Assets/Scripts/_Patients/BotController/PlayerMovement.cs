@@ -13,27 +13,46 @@ public class PlayerMovement : MonoBehaviour
     bool jump = false;
     bool crouch = false;
     bool attack = false;
+    public Animator animator;
 
-    public BoxCollider2D attackHand = null;
+    
+    private Vector3 lastPosition;
+
+    private void Start()
+    {
+        lastPosition = gameObject.transform.position;
+    }
 
     // Update is called once per frame
     void Update()
     {
+        if (lastPosition != gameObject.transform.position)
+        {
+            animator.SetBool("isWalking", true);
+        }
+        else {
+            animator.SetBool("isWalking", false);
+        }
+        lastPosition = gameObject.transform.position;
+
         if (isConnected) { 
         horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
 
         if (Input.GetButtonDown("Jump"))
         {
+            animator.SetBool("isJumping", true);
             jump = true;
         }
 
-        if (Input.GetKeyDown(KeyCode.F) && attackHand != null) {
+        if (Input.GetKeyDown(KeyCode.F)) {
             Debug.Log("Attacking!");
-            attackHand.transform.position = new Vector2(attackHand.transform.position.x + 2, attackHand.transform.position.y);
-        } else if (Input.GetKeyUp(KeyCode.F) && attackHand != null) {
+                animator.SetBool("isAttacking", true);
+                controller.Attack(true);
+        } else if (Input.GetKeyUp(KeyCode.F)) {
             Debug.Log("Stop Attacking!");
-            attackHand.transform.position = new Vector2(attackHand.transform.position.x - 2, attackHand.transform.position.y);
-        }
+                animator.SetBool("isAttacking",false);
+                controller.Attack(false);
+            }
         }
 
 

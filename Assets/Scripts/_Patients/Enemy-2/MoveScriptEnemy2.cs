@@ -12,12 +12,15 @@ public class MoveScriptEnemy2 : MonoBehaviour
     public float smoothTime = 0.3F;
     private Vector3 velocity = Vector3.zero;
     public bool Direction = true;
+    private bool TimeToStart;
 
     // Start is called before the first frame update
     void Start()
     {
+        m_animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         rb.velocity = RandomVector(-5f, 5f);
+        TimeToStart = false;
     }
 
     // Update is called once per frame
@@ -35,13 +38,41 @@ public class MoveScriptEnemy2 : MonoBehaviour
 
     private Vector3 RandomVector(float min, float max)
     {
-        float x = Random.Range(min, max);
-        float y = Random.Range(min, max);
-        return new Vector2(x, y);
+        if (TimeToStart)
+        {
+            float x = Random.Range(min, max);
+            float y = Random.Range(min, max);
+            return new Vector2(x, y);
+        }
+        return new Vector2(0, 0);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == "Ground") rb.velocity = RandomVector(-5f, 5f);
+        if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Enemy"))
+        {
+            m_animator.SetTrigger("AttackTrigger");
+            rb.velocity = RandomVector(-5f, 5f);
+        }
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Enemy"))
+        {
+            m_animator.SetTrigger("AttackTrigger");
+            rb.velocity = RandomVector(-5f, 5f);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        
+        if (collision.gameObject.CompareTag("Player")) { 
+            TimeToStart = true;
+            Debug.Log("I triggered");
+            rb.velocity = RandomVector(-5f, 5f);
+        }
+
     }
 }

@@ -25,7 +25,7 @@ public class EffectScript : MonoBehaviour
             blackScreen.transform.localScale.z - blackScreen.transform.localScale.z * scalingFactor * Time.deltaTime);
         }
         else {
-            Debug.Log("I should fade now");
+            //Debug.Log("I should fade now");
             Color col = blackScreenSpriteRenderer.color;
             col.a +=  scalingFactorDark * Time.deltaTime;
             //col.a = 1;
