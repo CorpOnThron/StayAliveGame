@@ -15,14 +15,14 @@ public class Launcher : MonoBehaviourPunCallbacks
     [SerializeField]
     public GameObject progressLabel;
 
-    [SerializeField]
-    public GameObject sendPanel;
+    //[SerializeField]
+    //public GameObject sendPanel;
 
     private void Start()
     {
         progressLabel.SetActive(false);
         controlPanel.SetActive(true);
-        sendPanel.SetActive(false);
+        //sendPanel.SetActive(false);
     }
 
     private void Awake()
@@ -62,7 +62,7 @@ public class Launcher : MonoBehaviourPunCallbacks
     {
         progressLabel.SetActive(false);
         controlPanel.SetActive(true);
-        sendPanel.SetActive(false);
+        //sendPanel.SetActive(false);
         Debug.Log("Disconnected becasue " + cause);
     }
 
@@ -87,7 +87,7 @@ public class Launcher : MonoBehaviourPunCallbacks
     {
         Debug.Log(newPlayer.NickName + " joined the room!");
         controlPanel.SetActive(false);
-        sendPanel.SetActive(true);
+        //sendPanel.SetActive(true);
         progressLabel.SetActive(false);
         CreateCallback();
     }
@@ -97,7 +97,7 @@ public class Launcher : MonoBehaviourPunCallbacks
         Debug.Log(otherPlayer.NickName + " Left the room!");
         PhotonNetwork.Disconnect();
         controlPanel.SetActive(true);
-        sendPanel.SetActive(false);
+        //sendPanel.SetActive(false);
         progressLabel.SetActive(false);
     }
 

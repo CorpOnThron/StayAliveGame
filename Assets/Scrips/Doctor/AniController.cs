@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -20,6 +21,11 @@ public class AniController : MonoBehaviour
             aniTransforms[i].gameObject.SetActive(curNum==i);
         }
         txt_factorsNum.text = pCurFactors.ToString();
+    }
+
+    public int GetFactor() 
+    {
+        return Int32.Parse(txt_factorsNum.text);
     }
 
    

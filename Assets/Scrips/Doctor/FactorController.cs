@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class FactorController : MonoBehaviour
 {
+    public Communicator communicator;
 
     private int f_heartRate;
     private int f_bloodPressure;
@@ -61,6 +62,12 @@ public class FactorController : MonoBehaviour
         f_bloodPressure=50;
         f_breath =50;
 
+        communicator.breathInput = f_breath;
+        communicator.temperatureInput = f_bloodPressure;
+        communicator.healthInput = f_heartRate;
+
+        //communicator.sendParameters();
+
         ctrl_heartRate =  canvasObj.transform.Find("Ani_HeartRate").GetComponent<AniController>();
         ctrl_bloodPressure = canvasObj.transform.Find("Ani_BloodMonitor").GetComponent<AniController>();
         ctrl_breath = canvasObj.transform.Find("Ani_Breath").GetComponent<AniController>();
@@ -80,6 +87,18 @@ public class FactorController : MonoBehaviour
         ctrl_bloodPressure.SetFactors(F_bloodPressure);
         ctrl_breath.SetFactors(F_breath);
         ctrl_patient.SetFactors(F_breath);
+
+        communicator.breathInput = ctrl_breath.GetFactor();
+        communicator.temperatureInput = ctrl_bloodPressure.GetFactor();
+        communicator.healthInput = ctrl_heartRate.GetFactor();
+
+        communicator.sendParameters();
+
+        
+
+
+
+
 
         if (F_breath == 0 || F_bloodPressure == 0 || F_heartRate == 0) {
             Debug.Log("this patient dead");

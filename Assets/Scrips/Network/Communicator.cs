@@ -7,18 +7,18 @@ using UnityEngine.UI;
 
 public class Communicator : MonoBehaviourPun
 {
-    public InputField healthInput;
-    public InputField temperatureInput;
-    public InputField breathInput;
+    public int healthInput;
+    public int temperatureInput;
+    public int breathInput;
     
 
     public void sendHealth()
     {
         try
         {
-            int rate = int.Parse(healthInput.text);
+            //int rate = healthInput;
             PhotonView photonView = GetComponent<PhotonView>();
-            photonView.RPC("GetHealth", RpcTarget.All, rate);
+            photonView.RPC("GetHealth", RpcTarget.All, healthInput);
         }
         catch (Exception e)
         {
@@ -29,9 +29,9 @@ public class Communicator : MonoBehaviourPun
     public void sendTemperature()
     {
         try { 
-            int rate = int.Parse(temperatureInput.text);
+            //int rate = temperatureInput;
             PhotonView photonView = GetComponent<PhotonView>();
-            photonView.RPC("GetTemperature", RpcTarget.All, rate);
+            photonView.RPC("GetTemperature", RpcTarget.All, temperatureInput);
         }
         catch (Exception e)
         {
@@ -42,9 +42,9 @@ public class Communicator : MonoBehaviourPun
     public void sendBreath()
     {
         try { 
-            int rate = int.Parse(breathInput.text);
+           // int rate = breathInput;
             PhotonView photonView = GetComponent<PhotonView>();
-            photonView.RPC("GetBreath", RpcTarget.All, rate);
+            photonView.RPC("GetBreath", RpcTarget.All, breathInput);
         }
         catch(Exception e)
         {
@@ -56,9 +56,9 @@ public class Communicator : MonoBehaviourPun
     {
         try
         {
-            int healthRate = int.Parse(healthInput.text);
-            int temperatureRate = int.Parse(temperatureInput.text);
-            int breathRate = int.Parse(breathInput.text);
+            int healthRate = healthInput;
+            int temperatureRate = temperatureInput;
+            int breathRate = breathInput;
 
             PhotonView photonView = GetComponent<PhotonView>();
             photonView.RPC("GetParameters", RpcTarget.All, healthRate, temperatureRate, breathRate);
