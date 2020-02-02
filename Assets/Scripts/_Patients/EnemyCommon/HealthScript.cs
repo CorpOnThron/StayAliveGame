@@ -9,7 +9,6 @@ public class HealthScript : MonoBehaviour
     public BotController player;
     public PlayerHealth playerHealth;
     private Animator m_animator;
-    public Animation attack;
 
     // Start is called before the first frame update
     void Start()
