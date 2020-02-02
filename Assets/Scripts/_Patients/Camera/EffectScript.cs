@@ -9,6 +9,7 @@ public class EffectScript : MonoBehaviour
     public float scalingFactorDark = 0.001f;
     public SpriteRenderer blackScreenSpriteRenderer;
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,7 +27,8 @@ public class EffectScript : MonoBehaviour
         else {
             Debug.Log("I should fade now");
             Color col = blackScreenSpriteRenderer.color;
-            col.a += col.a * scalingFactorDark * Time.deltaTime;
+            col.a +=  scalingFactorDark * Time.deltaTime;
+            //col.a = 1;
             blackScreenSpriteRenderer.color = col;
         }
 
