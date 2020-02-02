@@ -15,12 +15,14 @@ public class Launcher : MonoBehaviourPunCallbacks
     [SerializeField]
     public GameObject progressLabel;
 
-    public PlayerMovement playerControls;
+    [SerializeField]
+    public GameObject sendPanel;
 
     private void Start()
     {
         progressLabel.SetActive(false);
         controlPanel.SetActive(true);
+        sendPanel.SetActive(false);
     }
 
     private void Awake()
@@ -51,12 +53,15 @@ public class Launcher : MonoBehaviourPunCallbacks
     {
         Debug.Log("Connected to master");
         PhotonNetwork.JoinRandomRoom();
+        progressLabel.SetActive(true);
+        controlPanel.SetActive(false);
     }
 
     public override void OnDisconnected(DisconnectCause cause)
     {
         progressLabel.SetActive(false);
         controlPanel.SetActive(true);
+        sendPanel.SetActive(false);
         Debug.Log("Disconnected becasue " + cause);
     }
 
@@ -81,7 +86,9 @@ public class Launcher : MonoBehaviourPunCallbacks
     {
         Debug.Log(newPlayer.NickName + " joined the room!");
         controlPanel.SetActive(false);
-        playerControls.isConnected = true;
+        sendPanel.SetActive(true);
+        progressLabel.SetActive(false);
+        CreateCallback();
     }
 
     public override void OnPlayerLeftRoom(Player otherPlayer)
@@ -89,10 +96,19 @@ public class Launcher : MonoBehaviourPunCallbacks
         Debug.Log(otherPlayer.NickName + " Left the room!");
         PhotonNetwork.Disconnect();
         controlPanel.SetActive(true);
+        sendPanel.SetActive(false);
+        progressLabel.SetActive(false);
     }
 
-    public void SendMessage()
+    public void CreateCallback()
     {
-        
+        PhotonView view = GetComponent<PhotonView>();
+        view.RPC("CallbackForOtherPlayer", RpcTarget.All, "Other player started playing: This is a callback for you to start as well");
+    }
+
+    [PunRPC]
+    public void CallbackForOtherPlayer(string message)
+    {
+        Debug.Log(message);
     }
 }
