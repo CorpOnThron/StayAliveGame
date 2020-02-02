@@ -34,5 +34,13 @@ MonoBehaviour:
   - DestroySpaceship
   - Fire
   - RespawnSpaceship
+  - OnMessageReceived
+  - SendMessage
+  - Communicate
+  - GetBreath
+  - GetHealth
+  - GetTemperature
+  - GetParameters
+  - CallbackForOtherPlayer
   DisableAutoOpenWizard: 1
   ShowSettings: 1
