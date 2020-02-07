@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class FactorController : MonoBehaviour
 {
@@ -102,6 +103,7 @@ public class FactorController : MonoBehaviour
 
         if (F_breath == 0 || F_bloodPressure == 0 || F_heartRate == 0) {
             Debug.Log("this patient dead");
+            SceneManager.LoadScene("LoseScene");
         }
     }
 

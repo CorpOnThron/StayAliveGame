@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/PatientScene.unity
     guid: fc49e1abc50cd0648b11885126221ecd
+  - enabled: 1
+    path: Assets/Scenes/LoseScene.unity
+    guid: 889f17e07159479419beb3a3c65f4c06
   m_configObjects: {}
